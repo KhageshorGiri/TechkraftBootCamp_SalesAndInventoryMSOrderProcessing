@@ -1,7 +1,10 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using OrderProcessing.Application.Interfaces;
 using OrderProcessing.Application.Services;
 using OrderProcessing.Infra.Repositories;
 using OrderProcessing.Presentation.Middleware;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +20,23 @@ builder.Services.AddSingleton<IOrder, OrderService>();
 builder.Services.AddSingleton<IOrderRepository, OrderRepository>();
 
 var app = builder.Build();
+
+// add service to validate the JWT token
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options => {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = false,
+            ValidateAudience = false,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = "",
+            ValidAudience = "",
+            IssuerSigningKey = new SymmetricSecurityKey(
+                                            Encoding.UTF8.GetBytes("ThisisSecretXKeyThaGeneratETheJWTTokenishdgihsuihiwhj")),
+            ClockSkew = TimeSpan.Zero
+        };
+    });
 
 //app.UseMiddleware<GlobalExceptionHabdelerMiddleware>();
 
