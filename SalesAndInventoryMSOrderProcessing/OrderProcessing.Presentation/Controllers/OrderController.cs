@@ -15,9 +15,10 @@ namespace OrderProcessing.Presentation.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetOrder()
+        public async Task<ActionResult> GetAllOrder()
         {
-            return Ok(orderService.GetOrder());
+            await orderService.GetAllOrderAsync();
+            return Ok("hello");
         }
     }
 }

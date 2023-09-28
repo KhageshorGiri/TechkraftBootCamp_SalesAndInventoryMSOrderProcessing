@@ -8,7 +8,13 @@ namespace OrderProcessing.Application.Interfaces
 {
     public interface IOrder
     {
-        public string GetOrder();
+        Task GetAllOrderAsync();
+
+        Task CreateOrderAsync();
+
+        Task EditOrderAsync();
+
+        Task DeleteOrderAsync();
        
     }
 }

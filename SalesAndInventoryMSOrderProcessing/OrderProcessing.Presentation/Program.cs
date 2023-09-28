@@ -1,6 +1,7 @@
 using OrderProcessing.Application.Interfaces;
 using OrderProcessing.Application.Services;
 using OrderProcessing.Infra.Repositories;
+using OrderProcessing.Presentation.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,8 @@ builder.Services.AddSingleton<IOrder, OrderService>();
 builder.Services.AddSingleton<IOrderRepository, OrderRepository>();
 
 var app = builder.Build();
+
+//app.UseMiddleware<GlobalExceptionHabdelerMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

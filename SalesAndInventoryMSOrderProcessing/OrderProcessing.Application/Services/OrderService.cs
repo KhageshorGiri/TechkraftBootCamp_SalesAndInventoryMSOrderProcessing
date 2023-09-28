@@ -10,10 +10,25 @@ namespace OrderProcessing.Application.Services
         {
             this.orderRepository = _orderRepository;
         }
-        public string GetOrder()
+
+        public async Task CreateOrderAsync()
         {
-            var result = orderRepository.GetOrder();
-            return result + "and form application.";
+            throw new NotImplementedException();
+        }
+
+        public async Task DeleteOrderAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task EditOrderAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task GetAllOrderAsync()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,12 @@ namespace OrderProcessing.Application.Interfaces
 {
     public interface IOrderRepository
     {
-        public string GetOrder();
+        Task GetAllOrderAsync();
+
+        Task CreateOrderAsync();
+
+        Task EditOrderAsync();
+
+        Task DeleteOrderAsync();
     }
 }
