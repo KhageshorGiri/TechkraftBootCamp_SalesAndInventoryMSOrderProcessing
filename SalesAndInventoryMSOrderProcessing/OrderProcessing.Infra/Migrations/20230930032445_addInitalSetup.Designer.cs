@@ -12,8 +12,8 @@ using OrderProcessing.Infra.ContextClass;
 namespace OrderProcessing.Infra.Migrations
 {
     [DbContext(typeof(OrderProcessingContext))]
-    [Migration("20230930031409_initialSetup")]
-    partial class initialSetup
+    [Migration("20230930032445_addInitalSetup")]
+    partial class addInitalSetup
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -86,6 +86,9 @@ namespace OrderProcessing.Infra.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("OrderProcessCustomerID")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
@@ -93,6 +96,8 @@ namespace OrderProcessing.Infra.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("OrderProcessCustomerID");
 
                     b.ToTable("Items");
                 });
@@ -173,6 +178,72 @@ namespace OrderProcessing.Infra.Migrations
                     b.HasKey("OrderItemId");
 
                     b.ToTable("OrderItems");
+                });
+
+            modelBuilder.Entity("OrderProcessing.Core.Entities.OrderProcess", b =>
+                {
+                    b.Property<int>("CustomerID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CustomerID"), 1L, 1);
+
+                    b.HasKey("CustomerID");
+
+                    b.ToTable("OrderProcesses");
+                });
+
+            modelBuilder.Entity("OrderProcessing.Core.Entities.User", b =>
+                {
+                    b.Property<int>("UserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"), 1L, 1);
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId");
+
+                    b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("OrderProcessing.Core.Entities.Item", b =>
+                {
+                    b.HasOne("OrderProcessing.Core.Entities.OrderProcess", null)
+                        .WithMany("itemList")
+                        .HasForeignKey("OrderProcessCustomerID");
+                });
+
+            modelBuilder.Entity("OrderProcessing.Core.Entities.OrderProcess", b =>
+                {
+                    b.Navigation("itemList");
                 });
 #pragma warning restore 612, 618
         }

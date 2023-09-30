@@ -17,6 +17,8 @@ namespace OrderProcessing.Infra.ContextClass
         public DbSet<Item> Items { get; set; } = null!;
         public DbSet<DiscountRule> DiscountRules { get; set; } = null!;
         public DbSet<ItemDiscount> ItemDiscounts { get; set; } = null!;
+        public DbSet<User> Users { get; set; } = null!;
+        public DbSet<OrderProcess> OrderProcesses { get; set; } = null!;
     }
 
 }
