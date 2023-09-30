@@ -1,9 +1,12 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using OrderProcessing.Application.Interfaces;
 using OrderProcessing.Application.Services;
+using OrderProcessing.Infra.ContextClass;
 using OrderProcessing.Infra.Repositories;
 using OrderProcessing.Presentation.Middleware;
+using System;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,19 +14,24 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+// adding db configuration
+builder.Services.AddDbContext<OrderProcessingContext>(options => {
+        options.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
+    });
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //service registration
-builder.Services.AddSingleton<IOrder, OrderService>();
-builder.Services.AddSingleton<IOrderRepository, OrderRepository>();
-
-var app = builder.Build();
+builder.Services.AddScoped<IOrder, OrderService>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 
 // add service to validate the JWT token
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(options => {
+    .AddJwtBearer(options =>
+    {
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuer = false,
@@ -37,6 +45,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ClockSkew = TimeSpan.Zero
         };
     });
+
+var app = builder.Build();
 
 //app.UseMiddleware<GlobalExceptionHabdelerMiddleware>();
 

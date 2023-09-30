@@ -7,17 +7,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E95CA0AA-418
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{6B53E1CB-80DE-4256-B472-5EA80A19FFA2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderProcessing.test", "OrderProcessing.test\OrderProcessing.test.csproj", "{CD4A46DC-F443-475F-B68F-43AA266E391B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderProcessing.test", "OrderProcessing.test\OrderProcessing.test.csproj", "{CD4A46DC-F443-475F-B68F-43AA266E391B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderProcessing.Web", "OrderProcessing.Web\OrderProcessing.Web.csproj", "{FC4EAAE2-3950-4A38-BFFC-DE3D1AD3FDCA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderProcessing.Web", "OrderProcessing.Web\OrderProcessing.Web.csproj", "{FC4EAAE2-3950-4A38-BFFC-DE3D1AD3FDCA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderProcessing.Core", "OrderProcessing.Core\OrderProcessing.Core.csproj", "{157E945A-3956-436B-874D-5F4DC91ABE79}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderProcessing.Core", "OrderProcessing.Core\OrderProcessing.Core.csproj", "{157E945A-3956-436B-874D-5F4DC91ABE79}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderProcessing.Application", "OrderProcessing.Application\OrderProcessing.Application.csproj", "{C7104CC5-7BA3-48EF-9D96-3897E8E0B919}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderProcessing.Application", "OrderProcessing.Application\OrderProcessing.Application.csproj", "{C7104CC5-7BA3-48EF-9D96-3897E8E0B919}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderProcessing.Infra", "OrderProcessing.Infra\OrderProcessing.Infra.csproj", "{D398287C-82C6-4098-A3FB-A26A77B12407}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderProcessing.Infra", "OrderProcessing.Infra\OrderProcessing.Infra.csproj", "{D398287C-82C6-4098-A3FB-A26A77B12407}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderProcessing.Presentation", "OrderProcessing.Presentation\OrderProcessing.Presentation.csproj", "{48B2CEA4-1098-4268-A210-40EF456AE5E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderProcessing.Presentation", "OrderProcessing.Presentation\OrderProcessing.Presentation.csproj", "{48B2CEA4-1098-4268-A210-40EF456AE5E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

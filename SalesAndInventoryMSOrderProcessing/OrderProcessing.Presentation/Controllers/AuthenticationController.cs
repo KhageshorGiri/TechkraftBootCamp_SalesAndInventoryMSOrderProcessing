@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using OrderProcessing.Application.Interfaces;
 
 namespace OrderProcessing.Presentation.Controllers
 {
@@ -19,7 +20,7 @@ namespace OrderProcessing.Presentation.Controllers
         public async Task<ActionResult> LoginUserAsync()
         {
             // check if the user exist in db or not
-            var tokenResponse = await _authenticationService.LoginUserAsync();
+            var tokenResponse = "";//await _authenticationService.LoginUserAsync();
             return Ok(tokenResponse);
         }
 

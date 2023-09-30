@@ -1,11 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OrderProcessing.Core.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OrderProcessing.Infra.ContextClass
 {
@@ -14,15 +8,15 @@ namespace OrderProcessing.Infra.ContextClass
         public OrderProcessingContext(DbContextOptions<OrderProcessingContext> options)
             : base(options)
         {
-
           
         }
-        public DbSet<Order> orders { get; set; } = null!;
-        public DbSet<OrderItem> orderItems { get; set; } = null!;
-        public DbSet<Customer> customers { get; set; } = null!;
-        public DbSet<Item> items { get; set; } = null!;
-        public DbSet<DiscountRule> discountRules { get; set; } = null!;
-        public DbSet<ItemDiscount> itemDiscounts { get; set; } = null!;
+
+        public DbSet<Order> Orders { get; set; } = null!;
+        public DbSet<OrderItem> OrderItems { get; set; } = null!;
+        public DbSet<Customer> Customers { get; set; } = null!;
+        public DbSet<Item> Items { get; set; } = null!;
+        public DbSet<DiscountRule> DiscountRules { get; set; } = null!;
+        public DbSet<ItemDiscount> ItemDiscounts { get; set; } = null!;
     }
 
 }
