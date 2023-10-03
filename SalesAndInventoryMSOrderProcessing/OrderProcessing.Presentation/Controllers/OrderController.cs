@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using OrderProcessing.Application.Dtos;
 using OrderProcessing.Application.Interfaces;
 
 namespace OrderProcessing.Presentation.Controllers
@@ -14,11 +15,11 @@ namespace OrderProcessing.Presentation.Controllers
             this.orderService = orderService;
         }
 
-        [HttpGet]
-        public async Task<ActionResult> GetAllOrder()
+        [HttpPost]
+        public async Task<ActionResult> CreateOrderAsync([FromBody] CreateOrderDto order)
         {
-            await orderService.GetAllOrderAsync();
-            return Ok("hello");
+            await orderService.CreateOrderAsync(order);
+            return Ok("Sucess");
         }
     }
 }

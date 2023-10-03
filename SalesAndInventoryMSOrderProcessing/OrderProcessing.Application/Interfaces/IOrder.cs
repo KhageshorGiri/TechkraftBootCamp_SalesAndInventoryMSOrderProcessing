@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OrderProcessing.Application.Dtos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ namespace OrderProcessing.Application.Interfaces
     {
         Task GetAllOrderAsync();
 
-        Task CreateOrderAsync();
+        Task CreateOrderAsync(CreateOrderDto order);
 
         Task EditOrderAsync();
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OrderProcessing.Core.Entities;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace OrderProcessing.Application.Interfaces
     {
         Task GetAllOrderAsync();
 
-        Task CreateOrderAsync();
+        Task CreateOrderAsync(Order newOrder);
 
         Task EditOrderAsync();
 
