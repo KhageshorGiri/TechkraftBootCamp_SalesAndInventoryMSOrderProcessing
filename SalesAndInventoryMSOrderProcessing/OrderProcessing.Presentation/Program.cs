@@ -27,6 +27,8 @@ builder.Services.AddSwaggerGen();
 //service registration
 builder.Services.AddScoped<IOrder, OrderService>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<IUserManagerService, UserManagerService>();
+builder.Services.AddScoped<IUserManagerServiceRepository, UserManagerServiceRepository>();
 
 // add service to validate the JWT token
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -48,7 +50,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 var app = builder.Build();
 
-//app.UseMiddleware<GlobalExceptionHabdelerMiddleware>();
+app.UseMiddleware<GlobalExceptionHabdelerMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
