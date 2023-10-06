@@ -1,4 +1,6 @@
-﻿using OrderProcessing.Application.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using OrderProcessing.Application.Dtos;
+using OrderProcessing.Application.Interfaces;
 using OrderProcessing.Core.Entities;
 using OrderProcessing.Infra.ContextClass;
 using System;
@@ -39,19 +41,32 @@ namespace OrderProcessing.Infra.Repositories
            await dbContext.SaveChangesAsync();
         }
 
-        public async Task DeleteOrderAsync()
+        public async Task DeleteOrderAsync(int Id)
         {
-            throw new NotImplementedException();
+            var existingOrder = await dbContext.Orders.FindAsync(Id);
+            if(existingOrder != null)
+            {
+                dbContext.Remove(existingOrder);
+                dbContext.SaveChanges();
+            }
         }
-
+       
         public async Task EditOrderAsync()
         {
             throw new NotImplementedException();
         }
 
-        public async Task GetAllOrderAsync()
+        public async Task<List<Order>> GetAllOrderAsync()
         {
-            throw new NotImplementedException();
+            var allOrders = dbContext.Orders.Include(x => x.OrderItems);
+            return await allOrders.ToListAsync();
+        }
+
+        public async Task<Order?> GetOrderByIdAsync(int Id)
+        {
+            return await dbContext.Orders.Where(x => x.OrderId == Id).Include(p=>p.OrderItems)
+                .FirstOrDefaultAsync();
+            
         }
     }
 }

@@ -34,19 +34,76 @@ namespace OrderProcessing.Application.Services
             await orderRepository.CreateOrderAsync(newOrder);
         }
 
-        public async Task DeleteOrderAsync()
+        public async Task DeleteOrderAsync(int Id)
         {
-            throw new NotImplementedException();
+            await orderRepository.DeleteOrderAsync(Id);
         }
 
         public async Task EditOrderAsync()
         {
-            throw new NotImplementedException();
+            await orderRepository.EditOrderAsync();
         }
 
-        public async Task GetAllOrderAsync()
+        public async Task<List<GetOrderDto>> GetAllOrderAsync()
         {
-            throw new NotImplementedException();
+            var allOrders = await orderRepository.GetAllOrderAsync();
+
+            List<GetOrderDto> allOrderDetails = new List<GetOrderDto>();
+
+            foreach(var order in allOrders)
+            {
+                GetOrderDto getAllOrder = new()
+                {
+                    CustomerId = Convert.ToInt32(order.CustomerId),
+                    OrderId = order.OrderId,
+                    OrderDate = order.OrderDate
+                    
+                };
+                if (order.OrderItems != null)
+                {
+                    foreach (var items in order.OrderItems)
+                    {
+                        OrderItemDto orderItem = new()
+                        {
+                            ItemId = items.ItemId,
+                            Quantity = items.Quantity,
+                            Rate = Convert.ToDecimal(items.Rate),
+                            DiscountRateId = items.DiscountRateId
+                        };
+                        getAllOrder.OrderItems?.Add(orderItem);
+                    }
+                }
+                allOrderDetails.Add(getAllOrder);
+            }
+
+            return allOrderDetails;
+        }
+
+        public async Task<GetOrderDto> GetOrderByIdAsync(int Id)
+        {
+            var singleOrder = await orderRepository.GetOrderByIdAsync(Id);
+
+            GetOrderDto existingOrder = new()
+            {
+                CustomerId = Convert.ToInt32(singleOrder?.CustomerId),
+                OrderId = Convert.ToInt32(singleOrder?.OrderId),
+                OrderDate = singleOrder?.OrderDate
+            };
+            if (existingOrder.OrderItems != null)
+            {
+                foreach (var items in existingOrder.OrderItems)
+                {
+                    OrderItemDto orderItem = new()
+                    {
+                        ItemId = items.ItemId,
+                        Quantity = items.Quantity,
+                        Rate = Convert.ToDecimal(items.Rate),
+                        DiscountRateId = items.DiscountRateId
+                    };
+                    existingOrder.OrderItems?.Add(orderItem);
+                }
+            }
+            return existingOrder;
         }
     }
 }

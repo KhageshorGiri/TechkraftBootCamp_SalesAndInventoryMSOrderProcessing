@@ -1,4 +1,5 @@
-﻿using OrderProcessing.Core.Entities;
+﻿using OrderProcessing.Application.Dtos;
+using OrderProcessing.Core.Entities;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,12 +11,14 @@ namespace OrderProcessing.Application.Interfaces
 {
     public interface IOrderRepository
     {
-        Task GetAllOrderAsync();
+        Task<List<Order>> GetAllOrderAsync();
+
+        Task<Order?> GetOrderByIdAsync(int Id);
 
         Task CreateOrderAsync(Order newOrder);
 
         Task EditOrderAsync();
 
-        Task DeleteOrderAsync();
+        Task DeleteOrderAsync(int Id);
     }
 }

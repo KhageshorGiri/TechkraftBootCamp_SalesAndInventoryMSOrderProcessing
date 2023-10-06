@@ -9,13 +9,15 @@ namespace OrderProcessing.Application.Interfaces
 {
     public interface IOrder
     {
-        Task GetAllOrderAsync();
+        Task<List<GetOrderDto>> GetAllOrderAsync();
+
+        Task<GetOrderDto>? GetOrderByIdAsync(int Id);
 
         Task CreateOrderAsync(CreateOrderDto order);
 
         Task EditOrderAsync();
 
-        Task DeleteOrderAsync();
+        Task DeleteOrderAsync(int Id);
        
     }
 }
